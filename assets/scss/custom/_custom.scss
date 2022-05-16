@@ -1,0 +1,44 @@
+// header
+
+.brand {
+	font-weight: bold;
+	line-height: 1;
+}
+.life{
+	color: #f07c82;
+}
+.tech{
+	color: #2f90b9;
+}
+.about{
+	color: #96c24e;
+}
+.theme-icon-dark{
+	color: #645822;
+}
+.theme-icon-light{
+	color: #fecc11;
+}
+.nav {
+	font-size: 1em;
+	.life,
+	.tech,
+	.about {
+		display: none;
+	}
+}
+
+// 小屏幕
+
+@media (max-width: $maxWidth) {
+	.nav {
+		margin: 2em 0;
+	}
+	.menu-item {
+		.life,
+		.tech,
+		.about {
+			display: inline-block;
+		}
+	}
+}
