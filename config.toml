@@ -1,7 +1,7 @@
 ##########################################
 # 站点配置
 
-baseURL = "https://czwwt.tech/"
+baseURL = "https://blog.czwwt.tech/"
 title = "dove"
 languageCode = "zh-CN"
 hasCJKLanguage = true
@@ -25,7 +25,7 @@ pluralizeListTitles = false
 summaryLength = 42
 
 # 是否开启 GitHub 风格的 Emoji 书写方式
-enableEmoji = false
+enableEmoji = true
 
 # 脚注的返回链接中的文本
 footnoteReturnLinkContents = "↩"
@@ -104,7 +104,7 @@ uglyURLs = false
     # 头像
     avatar = "/icons/apple-touch-icon.png"
     # 网站（默认值：baseURL）
-    website = "https://czwwt.tech/"
+    website = "https://blog.czwwt.tech/"
     # 推特
     twitter = "pingqisang"
 
