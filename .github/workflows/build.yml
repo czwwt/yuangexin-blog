@@ -1,0 +1,74 @@
+# .github/workflows/build.yml
+
+name: Auto publish to public site
+
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  build_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        
+      - name: Checkout public repo
+        uses: actions/checkout@v3
+        with:
+          repository: yuangexin/yuangexin.github.io
+          path: public
+          token: ${{ secrets.HUGO_DEPLOY_KEY }}
+          
+      - name: Setup hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: latest
+          extended: true
+          
+      - name: build content to public site
+        working-directory: ./
+        run: hugo --minify --gc
+        
+        
+      - name: deploy and publish updates
+        working-directory: ./public
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add . -A
+          git commit -m "[chore] Deploy to GitHub Pages at $(date +'%Y-%m-%d %H:%M:%S')"
+          git push origin
+
+    
+#       - name: Configuration environment and deploy
+#         working-directory: ./public
+#         env:
+#           HUGO_DEPLOY_KEY: ${{secrets.HUGO_DEPLOY_KEY}}
+#           GIT_USER: yuangexin
+#           GIT_EMAIL: yuangexin@gmail.com
+#         run: |
+#           sudo timedatectl set-timezone "Asia/Shanghai"
+#           mkdir -p ~/.ssh/
+#           echo "$HUGO_DEPLOY_KEY" > ~/.ssh/id_rsa
+#           chmod 600 ~/.ssh/id_rsa
+#           # 从 GitHub 获取公钥并保存到 known_hosts 文件
+#           ssh-keyscan github.com >> ~/.ssh/known_hosts
+#           git config --global user.name $GIT_USER
+#           git config --global user.email $GIT_EMAIL
+#           git add .
+#           git commit -m "Deploy to GitHub Pages at $(date +'%Y-%m-%d %H:%M:%S')"
+#           git push --force git@github.com:yuangexin/yuangexin.github.io.git
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
